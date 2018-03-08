@@ -69,15 +69,11 @@ class Master(Script):
             )
 
         # Download Elasticsearch
-        cmd = format("cd {elastic_base_dir}; wget {elastic_download} -O {elastic_filename} -a {elastic_install_log}")
-        Execute(cmd, user=params.elastic_user)
-
-        # Extract Elasticsearch
-        cmd = format("cd {elastic_base_dir}; unzip {elastic_filename} /tmp/")
+        cmd = format("cd {elastic_base_dir}; wget {elastic_download} -O elasticsearch.tar.gz -a {elastic_install_log}")
         Execute(cmd, user=params.elastic_user)
 
         # Install Elasticsearch
-        cmd = format("cd /tmp/{elastic_foldername}/; cp -r . {elastic_base_dir}")
+        cmd = format("cd {elastic_base_dir}; tar -xf elasticsearch.tar.gz --strip-components=1")
         Execute(cmd, user=params.elastic_user)
 
         # Ensure all files owned by elasticsearch user
@@ -85,7 +81,7 @@ class Master(Script):
         Execute(cmd)
 
         # Remove Elasticsearch installation file
-        cmd = format("cd {elastic_base_dir}; rm {elastic_filename}")
+        cmd = format("cd {elastic_base_dir}; rm elasticsearch.tar.gz")
         Execute(cmd, user=params.elastic_user)
 
         Execute('echo "Install complete"')
