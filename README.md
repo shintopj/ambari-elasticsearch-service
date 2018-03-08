@@ -52,13 +52,26 @@ sudo service ambari-server restart
 
 Once the Ambari Server service has been restarted, you should see Elasticsearch as an available service to install from the Add Service screen.
 
+
+If Ambari fail to start the service with the following error 
+
+resource_management.core.exceptions.ExecutionFailed: Execution of '/opt/elasticsearch/bin/elasticsearch-plugin remove x-pack' returned 78. -> removing [x-pack]...
+ERROR: plugin [x-pack] not found; run 'elasticsearch-plugin list' to get list of installed plugins
+
+then try the below steps to fix
+
+```
+cd /opt/elasticsearch
+bin/elasticsearch-plugin install x-pack
+```
+
 ## Compatibility
 
 This service has been tested with the following:
 
-- CentOS 6.x
-- Ambari 2.4.2.0
-- HDP 2.6.1.0
+- Ubuntu 16.04.3 LTS
+- Ambari 2.5.2.0
+- HDP HDP-2.6.2.0
 - Elasticsearch 6.2.2
 
 ## Limitations
@@ -73,6 +86,8 @@ The following limitations currently apply:
 - The service does not currently have Ambari Service Advisor or Ambari Alert functionality.
 
 ## Contributors
+
+This project is a modified to enable support for Elasticsearch 6.2.2  However, the base started from a fork of <https://github.com/Symantec/ambari-elasticsearch-service>
 
 This project is a complete refactoring to enable support for Elasticsearch 5.x.  However, the base started from a fork of <https://github.com/Symantec/ambari-elasticsearch-service>
 
