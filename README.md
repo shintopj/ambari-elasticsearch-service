@@ -39,7 +39,7 @@ To install this service, you need access to the Ambari Server with sudo permissi
 
 ```
 VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
-sudo git clone https://github.com/Jaraxal/ambari-elasticsearch-service /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/ELASTICSEARCH
+sudo git clone https://github.com/shintopj/ambari-elasticsearch-service /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/ELASTICSEARCH
 ```
 
 If you do not have the ability to use git, you can download the repo archive and extract it to directory shown above.
@@ -58,8 +58,8 @@ This service has been tested with the following:
 
 - CentOS 6.x
 - Ambari 2.4.2.0
-- HDP 2.5.3.0
-- Elasticsearch 5.x
+- HDP 2.6.1.0
+- Elasticsearch 6.2.2
 
 ## Limitations
 
